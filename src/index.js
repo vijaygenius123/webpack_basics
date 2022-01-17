@@ -1,3 +1,7 @@
+import ComponentService from "./services/Component.service";
+import AlertService from "./services/Alert.service";
+import {parseInputs,inputsAreValid} from "./utils";
+
 const alertService = new AlertService()
 const componentService = new ComponentService()
 
@@ -19,4 +23,4 @@ const run = (alertService, componentService) => {
     })
 }
 
-run()
+run(alertService, componentService)

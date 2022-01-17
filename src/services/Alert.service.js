@@ -1,3 +1,5 @@
+import {inputsAreValid} from '../utils'
+
 class AlertService {
     constructor() {
         this.errorBox = document.getElementById('error')
@@ -7,7 +9,7 @@ class AlertService {
         const fullMessage = inputs.reduce((message, str, index) => {
             if (inputsAreValid(numbers[index])) {
                 return message + ""
-            } else message + `${str} is not a number`
+            } else return message + `${str} is not a number`
         }, 'Please enter two valid numbers!')
 
         this.errorBox.classList.remove('invisible')
@@ -19,3 +21,5 @@ class AlertService {
         this.errorBox.classList.add('invisible')
     }
 }
+
+export default AlertService
