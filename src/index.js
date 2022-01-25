@@ -1,6 +1,7 @@
 import ComponentService from "./services/Component.service";
 import AlertService from "./services/Alert.service";
 import {parseInputs,inputsAreValid} from "./utils";
+import "./main.scss"
 
 const alertService = new AlertService()
 const componentService = new ComponentService()
