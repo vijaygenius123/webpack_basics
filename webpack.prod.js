@@ -3,7 +3,10 @@ const common = require('./webpack.config')
 const {merge} = require('webpack-merge')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-module.exports = merge(common,{
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
+
+module.exports = merge(common, {
     mode: "production",
     output: {
         filename: "[name].[contenthash].bundle.js",
@@ -13,9 +16,15 @@ module.exports = merge(common,{
         rules: [
             {
                 test: /\.scss$/,
-                use: [MiniCssExtractPlugin.loader,'css-loader', 'sass-loader']
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
             },
         ]
+    },
+    optimization: {
+        minimizer: [
+            new CssMinimizerPlugin(),
+            new TerserPlugin(),
+        ],
     },
     plugins: [
         new MiniCssExtractPlugin({
